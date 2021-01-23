@@ -47,8 +47,8 @@ function RegisterPage(props) {
         confirmPassword: ''
       }}
       validationSchema={Yup.object().shape({
-        name: Yup.string()
-          .required('Name is required'),
+        firstName: Yup.string()
+          .required('First Name is required'),
         lastName: Yup.string()
           .required('Last Name is required'),
         email: Yup.string()
@@ -67,7 +67,7 @@ function RegisterPage(props) {
           let dataToSubmit = {
             email: values.email,
             password: values.password,
-            name: values.name,
+            firstname: values.firstname,
             lastname: values.lastname,
             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
           };
@@ -101,16 +101,16 @@ function RegisterPage(props) {
             <h2>Sign up</h2>
             <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
 
-              <Form.Item required label="Name">
+              <Form.Item required label="First Name">
                 <Input
-                  id="name"
-                  placeholder="Enter your name"
+                  id="firstName"
+                  placeholder="Enter your First Name"
                   type="text"
-                  value={values.name}
+                  value={values.firstName}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.name && touched.name ? 'text-input error' : 'text-input'
+                    errors.name && touched.firstName ? 'text-input error' : 'text-input'
                   }
                 />
                 {errors.name && touched.name && (
