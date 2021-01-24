@@ -18,7 +18,7 @@ const config = require("./config/key");
 
 const mongoose = require("mongoose");
 mongoose
-  .connect(MONGODB, { useNewUrlParser: true,  useUnifiedTopology: true  })
+  .connect(MONGODB, { useNewUrlParser: true,  useUnifiedTopology: true, useCreateIndex: true  })
   .then(() => {
     console.log('MongoDB Connected');
   })
