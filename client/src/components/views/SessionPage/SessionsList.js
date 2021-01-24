@@ -7,7 +7,7 @@ const SessionsList = props => {
 
   const getAllSessions = () => {
     return SessionManager.getAllSessions().then(sessionsFromDatabase => {
-      const sortedSessions = sessionsFromDatabase.sort(function(a, b) {
+      const sortedSessions = sessionsFromDatabase.sort(function (a, b) {
         return new Date(b.date) - new Date(a.date);
       });
       setSessions(sortedSessions.reverse());
@@ -16,6 +16,17 @@ const SessionsList = props => {
 
   useEffect(() => {
     // console.log("inside useEffect()");
+    getAllSessions();
+  }, []);
+
+
+  const deleteSession = id => {
+    SessionManager.delete(id)
+      .then(() => SessionManager.getAllSessions()
+        .then(setSessions));
+  };
+
+  useEffect(() => {
     getAllSessions();
   }, []);
 
@@ -39,6 +50,7 @@ const SessionsList = props => {
           <SessionCard
             key={session.id}
             session={session}
+            deleteSession={deleteSession}
             {...props}
           />
         ))}

@@ -27,16 +27,18 @@ export default {
       },
       body: JSON.stringify(editedSession)
     }).then(data => data.json());
+  },
+
+  delete(id) {
+    return fetch(`${remoteURL}/sessions/${id}`, {
+      method: "DELETE"
+    }).then(result => result.json());
   }
+
 
 };
 
 
-// delete(id) {
-//   return fetch(`${remoteURL}/sessions/${id}`, {
-//     method: "DELETE"
-//   }).then(result => result.json());
-// },
 
 
 

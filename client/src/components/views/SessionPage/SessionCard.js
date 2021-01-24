@@ -17,6 +17,11 @@ const SessionCard = props => {
         onClick={() => props.history.push(`/session/${props.session.id}/edit`)}>
         Edit
      </button>
+
+      <button onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) props.deleteSession(props.session.id) }}>
+        Delete
+    </button>
+
     </div>
   );
 };
