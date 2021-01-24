@@ -11,6 +11,8 @@ function LeftMenu(props) {
     </Menu.Item>
     <Menu.Item key="mail">
       <a href="/all-sessions">Sessions</a>
+    <Menu.Item key="chat">
+      <a href="/chat">Chat</a>
     </Menu.Item>
     <SubMenu title={<span>Blogs</span>}>
       <MenuItemGroup title="Item 1">
