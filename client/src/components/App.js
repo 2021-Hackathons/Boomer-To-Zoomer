@@ -8,6 +8,8 @@ import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import ChatPage from "./views/ChatPage/ChatPage"
 import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer"
+import AddSessionForm from "./views/SessionPage/new-sessions.js"
+import SessionsList from "./views/SessionPage/all-sessions.js"
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route exact path="/chat" component={Auth(ChatPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route exact path="/all-sessions" component={Auth(SessionsList, false)} />
+          <Route exact path="/new-sessions" component={Auth(AddSessionForm, false)} />
         </Switch>
       </div>
       <Footer />
