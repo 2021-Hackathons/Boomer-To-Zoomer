@@ -7,14 +7,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { MONGODB } = require('./config/dev');
 
-const config = require("./config/key");
-
-// const mongoose = require("mongoose");
-// mongoose
-//   .connect(config.mongoURI, { useNewUrlParser: true })
-//   .then(() => console.log("DB connected"))
-//   .catch(err => console.error(err));
-
 
 const mongoose = require("mongoose");
 mongoose
@@ -29,31 +21,34 @@ mongoose
     console.error(err)
   })
 
-app.use(cors())
+  io.on('connection', (socket) => {
+    Msg.find().then(result => {
+        socket.emit('output-messages', result)
+    })
+    console.log('a user connected');
+    socket.emit('message', 'Hello world');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+    socket.on('chatmessage', msg => {
+        const message = new Msg({ msg });
+        message.save().then(() => {
+            io.emit('message', msg)
+        })
+      })
+    });
+    
 
-//to not get any deprecation warning or error
-//support parsing of application/x-www-form-urlencoded post data
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
-//to get json data
-// support parsing of application/json type post data
 app.use(bodyParser.json());
 app.use(cookieParser());
-
 app.use('/api/users', require('./routes/users'));
-
-
-//use this to show the image you have in node js server to client (react js)
-//https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
 app.use('/uploads', express.static('uploads'));
 
-// Serve static assets if in production
+
 if (process.env.NODE_ENV === "production") {
-
-  // Set static folder   
-  // All the javascript and css files will be read and served from this folder
   app.use(express.static("client/build"));
-
-  // index.html for all page routes    html or routing and naviagtion
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
   });
