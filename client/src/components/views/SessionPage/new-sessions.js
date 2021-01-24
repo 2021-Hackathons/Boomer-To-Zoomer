@@ -1,37 +1,31 @@
 import React, { useState } from "react";
-import SessionManager from "../../../modules/SessionManager"
-// const userNow = JSON.parse(sessionStorage.getItem("userCredentials"));
+import SessionManager from "../../../modules/SessionManager";
 
-const AddSessionForm = props => {
+const AddSessionForm = (props) => {
   const [session, setSession] = useState({
-    name: "",
+    title: "",
     date: "",
-    time:"",
-    title:"",
+    time: "",
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleFieldChange = evt => {
+  const handleFieldChange = (evt) => {
     const stateToChange = { ...session };
     stateToChange[evt.target.id] = evt.target.value;
     setSession(stateToChange);
   };
 
-  /*  Local method for validation, set loadingStatus, create event      object, invoke the SessionManager post method, and redirect to the full event list
+  /*  Local method for validation, set loadingStatus, create session object, invoke the SessionManager post method, and redirect to the full session list
    */
-  const constructNewSession = evt => {
+  const constructNewSession = (evt) => {
     evt.preventDefault();
-    if (
-      session.name === "" ||
-      session.date === "" ||
-      session.time === "" ||
-      session.title === "" 
-    ) {
-      window.alert("Please login or fill out all the fields to continue");
+    if (session.title === "" || session.date === "" || session.time === "") {
     } else {
       setIsLoading(true);
-      // Create the session and redirect user to event list
-      SessionManager.post(session).then(() => props.history.push("/session"));
+      // Create the session and redirect user to session list
+      SessionManager.post(session).then(() =>
+        props.history.push("/all-sessions")
+      );
     }
   };
 
@@ -40,7 +34,7 @@ const AddSessionForm = props => {
       <form>
         <fieldset>
           <div className="formgrid">
-            <label htmlFor="name">Name: </label>
+            <label htmlFor="name">Title: </label>
             <input
               type="text"
               required
@@ -57,7 +51,7 @@ const AddSessionForm = props => {
               id="date"
               placeholder="SessionDate"
             />
-            <label htmlFor="time">time: </label>
+            <label htmlFor="time">Time: </label>
 
             <input
               type="time"
@@ -65,15 +59,6 @@ const AddSessionForm = props => {
               onChange={handleFieldChange}
               id="time"
               placeholder="time"
-            />
-            <label htmlFor="title">Title: </label>
-
-            <input
-              type="text"
-              required
-              onChange={handleFieldChange}
-              id="title"
-              placeholder="title"
             />
           </div>
           <div className="alignRight">

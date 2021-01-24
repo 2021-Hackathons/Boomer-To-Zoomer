@@ -11,14 +11,15 @@ export default {
       body: JSON.stringify(newSession)
     }).then(data => data.json());
   },
+  getAllSessions() {
+    return fetch(`${remoteURL}/all-sessions`).then(result => result.json());
+  },
 
 };
   // get(id) {
   //   return fetch(`${remoteURL}/sessions/${id}`).then(result => result.json());
   // },
-  // getAll() {
-  //   return fetch(`${remoteURL}/sessions`).then(result => result.json());
-  // },
+
   // delete(id) {
   //   return fetch(`${remoteURL}/sessions/${id}`, {
   //     method: "DELETE"
@@ -36,8 +37,3 @@ export default {
   //   }).then(data => data.json());
   // },
 
-  // getAllSessionsByUser() {
-  //   return fetch(`${remoteURL}/sessions?_expand=user`).then(result =>
-  //     result.json()
-  //   );
-  // }
