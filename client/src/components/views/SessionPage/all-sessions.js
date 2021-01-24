@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-//import the components we will need
 import SessionCard from "./SessionCard";
 import SessionManager from "../../../modules/SessionManager"
-// import "./Events.css";
 
 const SessionsList = props => {
   const [sessions, setSessions] = useState([]);
 
   const getAllSessions = () => {
     return SessionManager.getAllSessions().then(sessionsFromDatabase => {
-      const sortedSessions = sessions.sort(function(a, b) {
+      const sortedSessions = sessionsFromDatabase.sort(function(a, b) {
         return new Date(b.date) - new Date(a.date);
       });
       setSessions(sortedSessions.reverse());

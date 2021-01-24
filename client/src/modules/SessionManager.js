@@ -1,4 +1,4 @@
-const remoteURL = "http://localhost:5000";
+const remoteURL = "http://localhost:8080";
 
 export default {
 
@@ -12,7 +12,7 @@ export default {
     }).then(data => data.json());
   },
   getAllSessions() {
-    return fetch(`${remoteURL}/all-sessions`).then(result => result.json());
+    return fetch(`${remoteURL}/sessions`).then(result => result.json());
   },
 
 };

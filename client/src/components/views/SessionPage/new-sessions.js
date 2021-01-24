@@ -34,13 +34,13 @@ const AddSessionForm = (props) => {
       <form>
         <fieldset>
           <div className="formgrid">
-            <label htmlFor="name">Title: </label>
+            <label htmlFor="title">Title: </label>
             <input
               type="text"
               required
               onChange={handleFieldChange}
-              id="name"
-              placeholder="SessionName"
+              id="title"
+              placeholder="Session Name"
             />
             <label htmlFor="date">Date: </label>
 
@@ -49,7 +49,7 @@ const AddSessionForm = (props) => {
               required
               onChange={handleFieldChange}
               id="date"
-              placeholder="SessionDate"
+              placeholder="Session Date"
             />
             <label htmlFor="time">Time: </label>
 
