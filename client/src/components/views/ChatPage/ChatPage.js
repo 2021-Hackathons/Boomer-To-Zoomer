@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Row, Col, } from 'antd';
 import io from "socket.io-client";
 import { connect } from "react-redux";
-import  moment  from "moment";
+import moment from "moment";
 
 export class ChatPage extends Component {
-    state= {
+    state = {
         chatMessage: "",
     }
 
@@ -19,7 +19,7 @@ export class ChatPage extends Component {
         })
     }
 
-    hanleSearchChange =(e) => {
+    hanleSearchChange = (e) => {
         this.setState({
             chatMessage: e.target.value
         })
@@ -79,11 +79,11 @@ export class ChatPage extends Component {
                                 />
                             </Col>
                             <Col span={2}>
-                                
+
                             </Col>
 
                             <Col span={4}>
-                                <Button type="primary" style={{ width: '100%' }} onClick={this.submitChatMessage}  htmlType="submit">
+                                <Button type="primary" style={{ width: '100%' }} onClick={this.submitChatMessage} htmlType="submit">
                                     <Icon type="enter" />
                                 </Button>
                             </Col>
