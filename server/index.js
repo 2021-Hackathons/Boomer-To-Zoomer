@@ -8,6 +8,8 @@ const io = require("socket.io")(server, options);
 const mongoose = require("mongoose");
 const { MONGODB } = require("./config/dev")
 
+const uri = process.env.MONGODB;
+
 const connect = mongoose
   .connect(MONGODB, {
     useNewUrlParser: true,
